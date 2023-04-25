@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta name="description" content="Webpage description goes here" />
+</head>
+
+<body>
+  <p> Welcome</p>
+  <button onclick="alert(includes(document.body, 'p', 'Welcome'))"> Button </button>
+  <script>
+
+    function includes(document, tagName, text) {
+
+      // document type 
+      if (typeof document == "string") {
+        let parser = new DOMParser();
+        document = parser.parseFromString(document, "text/html")
+      }
+      let tag_elements = document.getElementsByTagName(tagName)
+
+      // text shearch
+      for (let i = 0; i < tag_elements.length; i++) {
+        if (tag_elements[i].textContent.includes(text)) {
+          return true;
+        }
+      }
+      return false;
+    }
+
+
+    // Flat array
+    function flattenIntegers(myArray) {
+      for (var i = myArray.length - 1; i >= 0; i--) {
+        if (myArray[i].constructor === Array) {
+          flattenIntegers(myArray[i]);
+          Array.prototype.splice.apply(myArray, [i, 1].concat(myArray[i]));
+        }
+        if (typeof myArray[i] != "number"){
+          myArray.splice(i, 1)
+        }
+      }
+      return myArray
+    }
+
+
+  </script>
+
+</body>
+
+</html>
